@@ -1,0 +1,13 @@
+﻿using System;
+
+namespace TaskTracker
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Task Tracker");
+            TaskTracker.GetInstance().UserInputTask();
+        }
+    }
+}
