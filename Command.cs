@@ -4,16 +4,16 @@ using System.Text;
 
 namespace TaskTracker
 {
-    class Command
+    class Command 
     {
-        public void Add()
+        public void Add(string param)
         {
 
         }
         public void Update()
         {
 
-        }
+        }  
         public void Delete()
         {
 

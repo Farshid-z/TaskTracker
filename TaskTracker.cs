@@ -14,37 +14,43 @@ namespace TaskTracker
                 obj = new TaskTracker();
             return obj;
         }
-        public void UserInputTask()
-        {
-            
+        public void GetUserCommand()
+        {        
             string input = Console.ReadLine();
-            if (!input.StartsWith("task-cli"))
+            if (string.IsNullOrEmpty(input) || !input.StartsWith("task-cli"))
             {
                 Console.WriteLine("Command is not Valid . Try Again");
-                return;
             }
-            if (string.IsNullOrEmpty(input))
+            else
             {
-                Console.WriteLine("Command is not Valid . Try Again");
-                return;
+                ExecuteCommands(input);
             }
+            GetUserCommand();
+        }
+        public bool ExecuteCommands(string input)
+        {
+            var userCommand = input.Split(" ");
+            string command = userCommand[1]; // main Command
+            string param = string.Empty;
+            if(userCommand.Length>3)
+                param= userCommand[2]; // params of command
 
-            var commands = input.Split(" ");
-            string error = string.Empty;
-            foreach(string command in commands)
+            if (commandHelper.IsCommandExists(command))
             {
-                if (commandHelper.IsCommandExists(command))
+                if (commandHelper.ExecuteCommand(param,out string error) == false)
                 {
-                    error = string.Empty;
-                    if (commandHelper.ExecuteCommand(out error)==false)
-                    {
-                        Console.WriteLine("Executation Failed " +
-                            Environment.NewLine +
-                            error);
-                        break;
-                    }
+                    Console.WriteLine("Executation Failed " +
+                        Environment.NewLine +
+                        error);
+                    return false;
+                }
+                else
+                {
+                    return true;
                 }
             }
+            
+            return false;
         }
     }
 }

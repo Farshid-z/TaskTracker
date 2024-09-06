@@ -9,7 +9,7 @@ namespace TaskTracker
             try
             {
                 Console.WriteLine("Task Tracker");
-                TaskTracker.GetInstance().UserInputTask();
+                TaskTracker.GetInstance().GetUserCommand();
             }
             catch (Exception e)
             {

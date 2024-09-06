@@ -21,7 +21,7 @@ namespace TaskTracker
         }
         public CommandHelper()
         {
-            commands.Add("add","AddTask");
+            commands.Add("add","Add");
             commands.Add("update", "UpdateTask");
             commands.Add("delete","DeleteTask");
             commands.Add("list", "ListAllTasks");
@@ -44,16 +44,16 @@ namespace TaskTracker
 
             return false;
         }
-        public bool ExecuteCommand(out string Error)
+        public bool ExecuteCommand(string param,out string Error)
         {
             /// This Method Run only if command is exists
             Error = string.Empty;
             string selectedCommand = commands[Command];
-            var type = Type.GetType("Task");
+            var type = Type.GetType("TaskTracker.Command");
             try
             {
                 var method = type.GetMethod(selectedCommand);
-                method.Invoke(null, new string[] { });
+                method.Invoke(new Command(),new object[]{param});
             }
             catch (Exception e)
             {
