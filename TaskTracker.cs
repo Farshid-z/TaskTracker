@@ -32,7 +32,7 @@ namespace TaskTracker
             var userCommand = input.Split(" ");
             string command = userCommand[1]; // main Command
             string param = string.Empty;
-            if(userCommand.Length>3)
+            if(userCommand.Length>2)
                 param= userCommand[2]; // params of command
 
             if (commandHelper.IsCommandExists(command))

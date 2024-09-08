@@ -53,7 +53,7 @@ namespace TaskTracker
             try
             {
                 var method = type.GetMethod(selectedCommand);
-                method.Invoke(new Command(),new object[]{param});
+                var result = method.Invoke(new Command(),new object[]{param});
             }
             catch (Exception e)
             {
